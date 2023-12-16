@@ -249,9 +249,12 @@ class IntlPhoneField extends StatefulWidget {
   /// If null, default magnification configuration will be used.
   final TextMagnifierConfiguration? magnifierConfiguration;
 
+  final bool disableCounter;
+
   const IntlPhoneField({
     Key? key,
     this.formFieldKey,
+    this.disableCounter = false,
     this.initialCountryCode,
     this.languageCode = 'en',
     this.disableAutoFillHints = false,
@@ -401,7 +404,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       magnifierConfiguration: widget.magnifierConfiguration,
       decoration: widget.decoration.copyWith(
         prefixIcon: _buildFlagsButton(),
-        counterText: !widget.enabled ? '' : null,
+        counterText: widget.disableCounter?"":!widget.enabled ? '' : null,
       ),
       style: widget.style,
       onSaved: (value) {
